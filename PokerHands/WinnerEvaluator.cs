@@ -11,13 +11,29 @@ namespace PokerHands
     /// </summary>
     public static class WinnerEvaluator
     {
+        public static List<WinnerSummary> GetWinnerOfTwo(
+            PokerPlayerModel player1,
+            PokerPlayerModel player2)
+        {
+            return GetWinnerOfTwoHands(ProcessPokerPlayerModel(player1),
+                ProcessPokerPlayerModel(player2));
+        }
+
+        private static CardHand ProcessPokerPlayerModel(PokerPlayerModel player)
+        {
+            CardHand hand = new CardHand(player.Id);
+            // process cards
+
+            return hand;
+        }
+
         /// <summary>
         /// Gets the winner given two players.
         /// </summary>
         /// <param name="player1"></param>
         /// <param name="player2"></param>
         /// <returns>summary of winners. List contains summary of both players in case of tie</returns>
-        public static List<WinnerSummary> GetWinnerOfTwo(
+        public static List<WinnerSummary> GetWinnerOfTwoHands(
             CardHand player1, 
             CardHand player2)
         {

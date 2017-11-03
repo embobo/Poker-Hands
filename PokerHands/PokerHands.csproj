@@ -50,6 +50,7 @@
     <Compile Include="CardHand.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="EnumStringParsers.cs" />
+    <Compile Include="PokerPlayerModel.cs" />
     <Compile Include="WinnerEvaluator.cs" />
     <Compile Include="WinnerSummary.cs" />
     <Compile Include="HandEvaluationObject.cs" />

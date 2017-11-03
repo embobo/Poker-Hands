@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandsTest", "PokerHand
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandsAPI", "PokerHandsAPI\PokerHandsAPI.csproj", "{8069D170-70F3-45C4-9C2E-0E7089E2D175}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55382438-843B-4F4E-927B-6D330F449CB9}"
+	ProjectSection(SolutionItems) = preProject
+		PokerHandForm.html = PokerHandForm.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

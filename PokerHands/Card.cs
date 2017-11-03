@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerHands
 {
-    public enum CardSuit { Joker, Club, Diamond, Heart, Spade };
-    public enum CardValue { Joker, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace };
-
+    
     public class Card : IEquatable<Card>,
                         IComparable<Card>
     {
@@ -67,7 +65,7 @@ namespace PokerHands
             switch (value)
             {
                 case CardValue.Joker:
-                    return "J";
+                    return "Joker";
                 case CardValue.Two:
                     return "2";
                 case CardValue.Three:

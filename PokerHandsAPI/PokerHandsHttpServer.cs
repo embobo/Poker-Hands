@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using Newtonsoft.Json;
+using PokerHands;
+
 
 namespace PokerHandsAPI
 {
@@ -39,7 +42,6 @@ namespace PokerHandsAPI
         /// <summary>
         /// Construct server with open port on localhost
         /// </summary>
-        /// <param name="path">Directory path to serve</param>
         public PokerHandsHttpServer()
         {
             this.ip = "localhost";
@@ -83,6 +85,34 @@ namespace PokerHandsAPI
         private void Process(HttpListenerContext context)
         {
             // Todo
+            HttpListenerRequest request = context.Request;
+
+            // translate request to my class
+            // alright this is not a solid way to do this but I just need it to work
+            // assume that the incoming request is set up as 
+            // "player1=(somename)&cards=(card1%20card2%20...)&player2=(...
+            PokerPlayerModel p1 = new PokerPlayerModel();
+            PokerPlayerModel p2 = new PokerPlayerModel();
+            p1.Id = request.QueryString["player1"];
+            p2.Id = request.QueryString["player2"];
+            if(p1.Id == null || p1.Id == "" || p2.Id == null || p2.Id == "")
+            {
+                // bad query
+            }
+            p1.Cards = request.QueryString["cards1"].Split(' ').ToList();
+            p2.Cards = request.QueryString["cards2"].Split(' ').ToList();
+            if(p1.Cards.Count < 1 || p2.Cards.Count < 1 
+                || p1.Cards.Count != p2.Cards.Count)
+            {
+                // bad query
+            }
+
+            // process my class and get result
+            WinnerSummary[] winners = WinnerEvaluator.GetWinnerOfTwo(p1, p2).ToArray();
+            string output = JsonConvert.SerializeObject(winners);
+            
+            // wrap result as HttpResponse
+            // return response
         }
 
         private void Listen()

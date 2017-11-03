@@ -27,7 +27,7 @@ namespace PokerHandsTest
             player2.AddCard(new Card(CardValue.Queen, CardSuit.Diamond));
 
             List<WinnerSummary> winnerSummary 
-                = WinnerEvaluator.GetWinnerOfTwo(player1, player2);
+                = WinnerEvaluator.GetWinnerOfTwoHands(player1, player2);
 
         }
 
@@ -40,7 +40,7 @@ namespace PokerHandsTest
             CardHand player2 = new CardHand("player2");
 
             List<WinnerSummary> winnerSummary
-                = WinnerEvaluator.GetWinnerOfTwo(player1, player2);
+                = WinnerEvaluator.GetWinnerOfTwoHands(player1, player2);
         }
 
 
@@ -63,7 +63,7 @@ namespace PokerHandsTest
             player2.AddCard(new Card(CardValue.Ten, CardSuit.Spade));
             player2.AddCard(new Card(CardValue.Nine, CardSuit.Spade));
 
-            List<WinnerSummary> winnerSummary = WinnerEvaluator.GetWinnerOfTwo(player1, player2);
+            List<WinnerSummary> winnerSummary = WinnerEvaluator.GetWinnerOfTwoHands(player1, player2);
             int result = winnerSummary.Count;
             int expected = 2;
 
@@ -89,7 +89,7 @@ namespace PokerHandsTest
             player2.AddCard(new Card(CardValue.Ten, CardSuit.Spade));
             player2.AddCard(new Card(CardValue.Nine, CardSuit.Spade));
 
-            List<WinnerSummary> winnerSummaries = WinnerEvaluator.GetWinnerOfTwo(player1, player2);
+            List<WinnerSummary> winnerSummaries = WinnerEvaluator.GetWinnerOfTwoHands(player1, player2);
             WinnerSummary winner = winnerSummaries.ToArray()[0];
             // assert single winner
             Assert.AreEqual(1, winnerSummaries.Count, "Winner Count not correct.");
@@ -117,7 +117,7 @@ namespace PokerHandsTest
             player2.AddCard(new Card(CardValue.Ten, CardSuit.Spade));
             player2.AddCard(new Card(CardValue.Nine, CardSuit.Spade));
 
-            List<WinnerSummary> winnerSummaries = WinnerEvaluator.GetWinnerOfTwo(player1, player2);
+            List<WinnerSummary> winnerSummaries = WinnerEvaluator.GetWinnerOfTwoHands(player1, player2);
             WinnerSummary winner = winnerSummaries.ToArray()[0];
             // assert single winner
             Assert.AreEqual(1, winnerSummaries.Count, "Winner Count not correct.");
@@ -145,7 +145,7 @@ namespace PokerHandsTest
             player2.AddCard(new Card(CardValue.Nine, CardSuit.Spade));
             player2.AddCard(new Card(CardValue.Ace, CardSuit.Spade));
 
-            List<WinnerSummary> winnerSummaries = WinnerEvaluator.GetWinnerOfTwo(player1, player2);
+            List<WinnerSummary> winnerSummaries = WinnerEvaluator.GetWinnerOfTwoHands(player1, player2);
             WinnerSummary winner = winnerSummaries.ToArray()[0];
             // assert single winner
             Assert.AreEqual(1, winnerSummaries.Count, "Winner Count not correct.");
