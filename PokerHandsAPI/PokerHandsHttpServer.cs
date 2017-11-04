@@ -190,6 +190,12 @@ namespace PokerHandsAPI
         private string path;
         private HttpListener listener;
 
+        public string URL
+        {
+            get { return string.Format("http://{0}:{1}/", this.ip, this.port); }
+            private set { }
+        }
+
         /// <summary>
         /// Gets the port this server is using
         /// </summary>
