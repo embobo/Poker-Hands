@@ -90,7 +90,7 @@ namespace PokerHandsAPI
             // translate request to my class
             // alright this is not a solid way to do this but I just need it to work
             // assume that the incoming request is set up as 
-            // "player1=(somename)&cards=(card1,0card2,...)&player2=(...
+            // "player1=(somename)&cards1=(card1,0card2,...)&player2=(...
             PokerPlayerModel p1 = new PokerPlayerModel();
             PokerPlayerModel p2 = new PokerPlayerModel();
             p1.Id = request.QueryString["player1"];
@@ -102,8 +102,7 @@ namespace PokerHandsAPI
             }
             p1.Cards = request.QueryString["cards1"].Split(',').ToList();
             p2.Cards = request.QueryString["cards2"].Split(',').ToList();
-            if(p1.Cards.Count < 1 || p2.Cards.Count < 1 
-                || p1.Cards.Count != p2.Cards.Count)
+            if(p1.Cards.Count != 5 || p2.Cards.Count != 5)
             {
                 // bad query
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
