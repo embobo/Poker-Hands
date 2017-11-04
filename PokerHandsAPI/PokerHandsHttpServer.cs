@@ -90,7 +90,7 @@ namespace PokerHandsAPI
             // translate request to my class
             // alright this is not a solid way to do this but I just need it to work
             // assume that the incoming request is set up as 
-            // "player1=(somename)&cards=(card1%20card2%20...)&player2=(...
+            // "player1=(somename)&cards=(card1,0card2,...)&player2=(...
             PokerPlayerModel p1 = new PokerPlayerModel();
             PokerPlayerModel p2 = new PokerPlayerModel();
             p1.Id = request.QueryString["player1"];
@@ -98,21 +98,42 @@ namespace PokerHandsAPI
             if(p1.Id == null || p1.Id == "" || p2.Id == null || p2.Id == "")
             {
                 // bad query
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
-            p1.Cards = request.QueryString["cards1"].Split(' ').ToList();
-            p2.Cards = request.QueryString["cards2"].Split(' ').ToList();
+            p1.Cards = request.QueryString["cards1"].Split(',').ToList();
+            p2.Cards = request.QueryString["cards2"].Split(',').ToList();
             if(p1.Cards.Count < 1 || p2.Cards.Count < 1 
                 || p1.Cards.Count != p2.Cards.Count)
             {
                 // bad query
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
 
             // process my class and get result
             WinnerSummary[] winners = WinnerEvaluator.GetWinnerOfTwo(p1, p2).ToArray();
-            string output = JsonConvert.SerializeObject(winners);
+            string responseString = "<HTML><BODY><ul>";
+            foreach(WinnerSummary winner in winners)
+            {
+                responseString += "li" + winner.ID + " " + winner.Hand + " winning card: " + winner.WinningCard + "</li>";
+            }
+            responseString += "</ul></BODY></HTML>";
+
+            // wrap result as HttpResponse and return
+            HttpListenerResponse response = context.Response;
+
+            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+
+            // get response stream and write response to it
+            response.ContentLength64 = buffer.Length;
+            System.IO.Stream output = response.OutputStream;
+            output.Write(buffer, 0, buffer.Length);
+
+            //close the output stream
+            output.Close();
+            //stop listener
+            listener.Stop();
             
-            // wrap result as HttpResponse
-            // return response
+            
         }
 
         private void Listen()
