@@ -133,7 +133,6 @@ namespace PokerHandsAPI
             //stop listener
             listener.Stop();
             
-            
         }
 
         private void Listen()
