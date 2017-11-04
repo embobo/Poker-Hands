@@ -1,0 +1,6 @@
+C:\Users\Emma\source\repos\PokerHands\PokerHands\bin\Release\PokerHands.dll.config
+C:\Users\Emma\source\repos\PokerHands\PokerHands\bin\Release\PokerHands.dll
+C:\Users\Emma\source\repos\PokerHands\PokerHands\bin\Release\PokerHands.pdb
+C:\Users\Emma\source\repos\PokerHands\PokerHands\obj\Release\PokerHands.csproj.CoreCompileInputs.cache
+C:\Users\Emma\source\repos\PokerHands\PokerHands\obj\Release\PokerHands.dll
+C:\Users\Emma\source\repos\PokerHands\PokerHands\obj\Release\PokerHands.pdb

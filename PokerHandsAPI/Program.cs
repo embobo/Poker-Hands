@@ -12,8 +12,9 @@ namespace PokerHandsAPI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Starting server on port 8080");
+            Console.WriteLine("Starting server");
             PokerHandsHttpServer server = new PokerHandsHttpServer(8080);
+            Console.WriteLine("Server started at " + server.URL);
             server.Start();
             Console.WriteLine("Simple server for poker hands, press any key to quit.");
             Console.ReadKey();

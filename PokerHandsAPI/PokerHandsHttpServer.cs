@@ -111,12 +111,13 @@ namespace PokerHandsAPI
 
             // process my class and get result
             WinnerSummary[] winners = WinnerEvaluator.GetWinnerOfTwo(p1, p2).ToArray();
-            string responseString = "<HTML><BODY><ul>";
+            /*string responseString = "<HTML><BODY><ul>";
             foreach(WinnerSummary winner in winners)
             {
                 responseString += "li" + winner.ID + " " + winner.Hand + " winning card: " + winner.WinningCard + "</li>";
             }
-            responseString += "</ul></BODY></HTML>";
+            responseString += "</ul></BODY></HTML>";*/
+            string responseString = JsonConvert.SerializeObject(winners);
 
             // wrap result as HttpResponse and return
             HttpListenerResponse response = context.Response;
